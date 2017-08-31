@@ -343,7 +343,8 @@ class MiroTransformableTest
         "image_title": "Missives on museums",
         "image_copyright_cleared": "Y",
         "image_tech_file_size": ["1000000"],
-        "image_use_restrictions": "CC-BY"
+        "image_use_restrictions": "CC-BY",
+        "image_innopac_id": "12345678"
       }""")
     }
 
@@ -353,7 +354,8 @@ class MiroTransformableTest
         "image_title": "A caricature of cats",
         "image_general_use": "Y",
         "image_tech_file_size": ["1000000"],
-        "image_use_restrictions": "CC-BY"
+        "image_use_restrictions": "CC-BY",
+        "image_innopac_id": "12345678"
       }""")
     }
 
@@ -362,7 +364,8 @@ class MiroTransformableTest
         data = """{
         "image_title": "Drawings of dromedaries",
         "image_tech_file_size": ["1000000"],
-        "image_use_restrictions": "CC-BY"
+        "image_use_restrictions": "CC-BY",
+        "image_innopac_id": "12345678"
       }""")
     }
 
@@ -373,7 +376,8 @@ class MiroTransformableTest
         "image_general_use": "N",
         "image_copyright_cleared": "Y",
         "image_tech_file_size": ["1000000"],
-        "image_use_restrictions": "CC-BY"
+        "image_use_restrictions": "CC-BY",
+        "image_innopac_id": "12345678"
       }""")
     }
 
@@ -384,7 +388,8 @@ class MiroTransformableTest
         "image_general_use": "Y",
         "image_copyright_cleared": "N",
         "image_tech_file_size": ["1000000"],
-        "image_use_restrictions": "CC-BY"
+        "image_use_restrictions": "CC-BY",
+        "image_innopac_id": "12345678"
       }""")
     }
 
@@ -395,7 +400,8 @@ class MiroTransformableTest
           "image_general_use": "Y",
           "image_copyright_cleared": "Y",
           "image_tech_file_size": [],
-          "image_use_restrictions": "CC-BY"
+          "image_use_restrictions": "CC-BY",
+          "image_innopac_id": "12345678"
         }"""
       )
     }
@@ -407,7 +413,46 @@ class MiroTransformableTest
           "image_general_use": "Y",
           "image_copyright_cleared": "Y",
           "image_tech_file_size": ["1000000"],
-          "image_use_restrictions": "NotARealLicense"
+          "image_use_restrictions": "NotARealLicense",
+          "image_innopac_id": "12345678"
+        }"""
+      )
+    }
+
+    it("missing an INNOPAC ID") {
+      assertTransformWorkFails(
+        data = """{
+          "image_title": "Touching a toxic tree is truly tragic",
+          "image_general_use": "Y",
+          "image_copyright_cleared": "Y",
+          "image_tech_file_size": ["1000000"],
+          "image_use_restrictions": "CC-BY"
+        }"""
+      )
+    }
+
+    it("with an INNOPAC ID of the wrong length") {
+      assertTransformWorkFails(
+        data = """{
+          "image_title": "Touching a toxic tree is truly tragic",
+          "image_general_use": "Y",
+          "image_copyright_cleared": "Y",
+          "image_tech_file_size": ["1000000"],
+          "image_use_restrictions": "NotARealLicense",
+          "image_innopac_id": "123456"
+        }"""
+      )
+    }
+
+    it("with an INNOPAC ID of the wrong format") {
+      assertTransformWorkFails(
+        data = """{
+          "image_title": "Touching a toxic tree is truly tragic",
+          "image_general_use": "Y",
+          "image_copyright_cleared": "Y",
+          "image_tech_file_size": ["1000000"],
+          "image_use_restrictions": "NotARealLicense",
+          "image_innopac_id": "abcdefghi"
         }"""
       )
     }

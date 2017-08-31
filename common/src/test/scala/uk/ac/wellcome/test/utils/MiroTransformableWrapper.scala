@@ -21,6 +21,7 @@ trait MiroTransformableWrapper extends Matchers { this: Suite =>
         "image_copyright_cleared": "Y",
         "image_tech_file_size": ["1000000"],
         "image_use_restrictions": "CC-BY",
+        "image_innopac_id": "12345678",
         $extraData
       }"""
 
