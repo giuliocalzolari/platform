@@ -101,6 +101,17 @@ trait MiroTransformChecks {
         )
     }
 
+  /* In the L, V and M collections, any images from certain departments are
+   * automatically excluded.
+   */
+  private def checkLicense(data: MiroTransformableData): List[FieldIssues] =
+    data.libraryDept match {
+      case Some("Archives and Manuscripts") | Some("Public programmes") => {
+        List(FieldIssues("image_library_dept", data.libraryDept))
+      }
+      case _ => Nil
+    }
+
   val checks: List[(MiroTransformableData) => List[FieldIssues]] = List(
     checkCopyrightCleared,
     checkImageExists,

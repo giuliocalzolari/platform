@@ -28,7 +28,8 @@ case class MiroTransformableData(
   @JsonProperty("image_use_restrictions") useRestrictions: Option[String],
   @JsonProperty("image_supp_lettering") suppLettering: Option[String],
   @JsonProperty("image_general_use") generalUse: Option[String],
-  @JsonProperty("image_innopac_id") innopacID: Option[String]
+  @JsonProperty("image_innopac_id") innopacID: Option[String],
+  @JsonProperty("image_library_dept") libraryDept: Option[String]
 )
 
 case object MiroTransformableData extends MiroTransformChecks {
