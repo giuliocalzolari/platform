@@ -104,6 +104,7 @@ trait MiroTransformChecks {
   val checks: List[(MiroTransformableData) => List[FieldIssues]] = List(
     checkCopyrightCleared,
     checkImageExists,
-    checkLicense
+    checkLicense,
+    checkInnopacID
   )
 }
