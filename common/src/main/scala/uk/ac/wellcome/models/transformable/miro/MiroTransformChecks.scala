@@ -1,5 +1,7 @@
 package uk.ac.wellcome.models.transformable.miro
 
+import scala.util.matching.Regex
+
 import uk.ac.wellcome.models.transformable.{
   FieldIssues,
   ShouldNotTransformException
@@ -42,6 +44,18 @@ trait MiroTransformChecks {
           Some(
             "Missing image_tech_file_size means there is likely no underlying image")))
     } else Nil
+
+  /* The INNOPAC ID should be an 8-digit number (which may have an 'x' at
+   * the end).  If this field is missing or incorrectly formatted, we should
+   * discard this image.
+   */
+  private def checkInnopacID(data: MiroTransformableData): List[FieldIssues] = {
+    val pattern = "^[0-9]{7}[0-9x]$".r
+    data.innopacID.getOrElse("") match {
+      case pattern(_*) => Nil
+      case _ => List(FieldIssues("image_innopac_id", data.innopacID))
+    }
+  }
 
   private def checkLicense(data: MiroTransformableData): List[FieldIssues] =
     data.useRestrictions match {
