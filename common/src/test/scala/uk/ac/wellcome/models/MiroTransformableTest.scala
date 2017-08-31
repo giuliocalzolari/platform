@@ -337,60 +337,59 @@ class MiroTransformableTest
     work.creators shouldBe List(Agent("Gyokushō, a cät Ôwnêr"))
   }
 
-  it("should not pass through records with a missing image_cleared field") {
-    assertTransformWorkFails(data = """{
-      "image_title": "Missives on museums",
-      "image_copyright_cleared": "Y"
-    }""")
-  }
+  describe("should not pass through records that are incomplete or not cleared") {
+    it("missing the image_general_use field") {
+      assertTransformWorkFails(data = """{
+        "image_title": "Missives on museums",
+        "image_copyright_cleared": "Y"
+      }""")
+    }
 
-  it(
-    "should not pass through records with a missing image_copyright_cleared field") {
-    assertTransformWorkFails(
-      data = """{
-      "image_title": "A caricature of cats",
-      "image_cleared": "Y"
-    }""")
-  }
+    it("missing the image_copyright_cleared field") {
+      assertTransformWorkFails(
+        data = """{
+        "image_title": "A caricature of cats",
+        "image_general_use": "Y"
+      }""")
+    }
 
-  it(
-    "should not pass through records with missing image_cleared and missing image_copyright_cleared field") {
-    assertTransformWorkFails(
-      data = """{
-      "image_title": "Drawings of dromedaries"
-    }""")
-  }
+    it("missing the image_general_use and image_copyright_cleared fields") {
+      assertTransformWorkFails(
+        data = """{
+        "image_title": "Drawings of dromedaries"
+      }""")
+    }
 
-  it(
-    "should not pass through records with an image_cleared value that isn't 'Y'") {
-    assertTransformWorkFails(
-      data = """{
-      "image_title": "Confidential colourings of crocodiles",
-      "image_cleared": "N",
-      "image_copyright_cleared": "Y"
-    }""")
-  }
+    it("image_general_use != Y") {
+      assertTransformWorkFails(
+        data = """{
+        "image_title": "Confidential colourings of crocodiles",
+        "image_general_use": "N",
+        "image_copyright_cleared": "Y"
+      }""")
+    }
 
-  it(
-    "should not pass through records with image_copyright_cleared field that isn't 'Y'") {
-    assertTransformWorkFails(
-      data = """{
-      "image_title": "Proprietary poetry about porcupines",
-      "image_cleared": "Y",
-      "image_copyright_cleared": "N"
-    }""")
-  }
+    it(
+      "image_copyright_cleared != Y") {
+      assertTransformWorkFails(
+        data = """{
+        "image_title": "Proprietary poetry about porcupines",
+        "image_general_use": "Y",
+        "image_copyright_cleared": "N"
+      }""")
+    }
 
-  it(
-    "should not pass through records that are missing technical metadata") {
-    assertTransformWorkFails(
-      data = """{
-        "image_title": "Touching a toxic tree is truly tragic",
-        "image_cleared": "Y",
-        "image_copyright_cleared": "Y",
-        "image_tech_file_size": []
-      }"""
-    )
+    it(
+      "missing technical metadata") {
+      assertTransformWorkFails(
+        data = """{
+          "image_title": "Touching a toxic tree is truly tragic",
+          "image_general_use": "Y",
+          "image_copyright_cleared": "Y",
+          "image_tech_file_size": []
+        }"""
+      )
+    }
   }
 }
 

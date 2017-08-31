@@ -17,7 +17,7 @@ trait MiroTransformableWrapper extends Matchers { this: Suite =>
 
   def buildJSONForWork(extraData: String): String =
     s"""{
-        "image_cleared": "Y",
+        "image_general_use": "Y",
         "image_copyright_cleared": "Y",
         "image_tech_file_size": ["1000000"],
         "image_use_restrictions": "CC-BY",
