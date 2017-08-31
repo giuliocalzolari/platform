@@ -369,8 +369,7 @@ class MiroTransformableTest
       }""")
     }
 
-    it(
-      "image_copyright_cleared != Y") {
+    it("image_copyright_cleared != Y") {
       assertTransformWorkFails(
         data = """{
         "image_title": "Proprietary poetry about porcupines",
@@ -379,8 +378,7 @@ class MiroTransformableTest
       }""")
     }
 
-    it(
-      "missing technical metadata") {
+    it("missing technical metadata") {
       assertTransformWorkFails(
         data = """{
           "image_title": "Touching a toxic tree is truly tragic",
