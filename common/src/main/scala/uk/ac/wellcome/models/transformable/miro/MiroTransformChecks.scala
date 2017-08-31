@@ -20,7 +20,7 @@ trait MiroTransformChecks {
     } else Nil
 
     val copyrightCleared = if (data.copyrightCleared.getOrElse("N") != "Y") {
-      List(FieldIssues("image_cleared", data.cleared))
+      List(FieldIssues("image_copyright_cleared", data.copyrightCleared))
     } else Nil
 
     generalCleared ++ copyrightCleared
