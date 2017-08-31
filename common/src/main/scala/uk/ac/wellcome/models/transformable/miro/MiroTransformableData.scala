@@ -19,7 +19,6 @@ case class MiroTransformableData(
   @JsonProperty("image_secondary_creator") secondaryCreator: Option[
     List[String]],
   @JsonProperty("image_artwork_date") artworkDate: Option[String],
-  @JsonProperty("image_cleared") cleared: Option[String],
   @JsonProperty("image_copyright_cleared") copyrightCleared: Option[String],
   @JsonProperty("image_keywords") keywords: Option[List[String]],
   @JsonProperty("image_keywords_unauth") keywordsUnauth: Option[List[String]],
@@ -27,7 +26,8 @@ case class MiroTransformableData(
   @JsonProperty("image_lc_genre") lcGenre: Option[String],
   @JsonProperty("image_tech_file_size") techFileSize: Option[List[String]],
   @JsonProperty("image_use_restrictions") useRestrictions: Option[String],
-  @JsonProperty("image_supp_lettering") suppLettering: Option[String]
+  @JsonProperty("image_supp_lettering") suppLettering: Option[String],
+  @JsonProperty("image_general_use") generalUse: Option[String]
 )
 
 case object MiroTransformableData extends MiroTransformChecks {

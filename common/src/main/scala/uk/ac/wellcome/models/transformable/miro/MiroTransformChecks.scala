@@ -6,17 +6,14 @@ import uk.ac.wellcome.models.transformable.{
 }
 
 trait MiroTransformChecks {
-  /* XML tags refer to fields within the Miro XML dumps.
-   * If the <image_cleared> or <image_copyright_cleared> fields are
+  /* If the <image_general_use> or <image_copyright_cleared> fields are
    * missing or don't have have the value 'Y', then we shouldn't expose
-   * this image in the public API.
-   *
-   * See https://github.com/wellcometrust/platform-api/issues/356
+   * this image in the Catalogue API.
    */
   private def checkCopyrightCleared(
     data: MiroTransformableData): List[FieldIssues] = {
-    val generalCleared = if (data.cleared.getOrElse("N") != "Y") {
-      List(FieldIssues("image_cleared", data.cleared))
+    val generalCleared = if (data.generalUse.getOrElse("N") != "Y") {
+      List(FieldIssues("image_general_use", data.generalUse))
     } else Nil
 
     val copyrightCleared = if (data.copyrightCleared.getOrElse("N") != "Y") {
