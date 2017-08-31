@@ -341,7 +341,9 @@ class MiroTransformableTest
     it("missing the image_general_use field") {
       assertTransformWorkFails(data = """{
         "image_title": "Missives on museums",
-        "image_copyright_cleared": "Y"
+        "image_copyright_cleared": "Y",
+        "image_tech_file_size": ["1000000"],
+        "image_use_restrictions": "CC-BY"
       }""")
     }
 
@@ -349,14 +351,18 @@ class MiroTransformableTest
       assertTransformWorkFails(
         data = """{
         "image_title": "A caricature of cats",
-        "image_general_use": "Y"
+        "image_general_use": "Y",
+        "image_tech_file_size": ["1000000"],
+        "image_use_restrictions": "CC-BY"
       }""")
     }
 
     it("missing the image_general_use and image_copyright_cleared fields") {
       assertTransformWorkFails(
         data = """{
-        "image_title": "Drawings of dromedaries"
+        "image_title": "Drawings of dromedaries",
+        "image_tech_file_size": ["1000000"],
+        "image_use_restrictions": "CC-BY"
       }""")
     }
 
@@ -365,7 +371,9 @@ class MiroTransformableTest
         data = """{
         "image_title": "Confidential colourings of crocodiles",
         "image_general_use": "N",
-        "image_copyright_cleared": "Y"
+        "image_copyright_cleared": "Y",
+        "image_tech_file_size": ["1000000"],
+        "image_use_restrictions": "CC-BY"
       }""")
     }
 
@@ -374,7 +382,9 @@ class MiroTransformableTest
         data = """{
         "image_title": "Proprietary poetry about porcupines",
         "image_general_use": "Y",
-        "image_copyright_cleared": "N"
+        "image_copyright_cleared": "N",
+        "image_tech_file_size": ["1000000"],
+        "image_use_restrictions": "CC-BY"
       }""")
     }
 
@@ -384,7 +394,20 @@ class MiroTransformableTest
           "image_title": "Touching a toxic tree is truly tragic",
           "image_general_use": "Y",
           "image_copyright_cleared": "Y",
-          "image_tech_file_size": []
+          "image_tech_file_size": [],
+          "image_use_restrictions": "CC-BY"
+        }"""
+      )
+    }
+
+    it("incorrect license") {
+      assertTransformWorkFails(
+        data = """{
+          "image_title": "Touching a toxic tree is truly tragic",
+          "image_general_use": "Y",
+          "image_copyright_cleared": "Y",
+          "image_tech_file_size": ["1000000"],
+          "image_use_restrictions": "NotARealLicense"
         }"""
       )
     }
