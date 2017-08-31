@@ -456,6 +456,34 @@ class MiroTransformableTest
         }"""
       )
     }
+
+    it("library department is Public Programmes") {
+      assertTransformWorkFails(
+        data = """{
+          "image_title": "Touching a toxic tree is truly tragic",
+          "image_general_use": "Y",
+          "image_copyright_cleared": "Y",
+          "image_tech_file_size": ["1000000"],
+          "image_use_restrictions": "NotARealLicense",
+          "image_innopac_id": "12345678",
+          "image_library_dept": "Public programmes"
+        }"""
+      )
+    }
+
+    it("library department is Archives and Manuscripts") {
+      assertTransformWorkFails(
+        data = """{
+          "image_title": "Touching a toxic tree is truly tragic",
+          "image_general_use": "Y",
+          "image_copyright_cleared": "Y",
+          "image_tech_file_size": ["1000000"],
+          "image_use_restrictions": "NotARealLicense",
+          "image_innopac_id": "12345678",
+          "image_library_dept": "Archives and Manuscripts"
+        }"""
+      )
+    }
   }
 }
 
