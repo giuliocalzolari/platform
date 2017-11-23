@@ -34,10 +34,13 @@ lazy val id_minter = doSharedSetup(project)
 lazy val reindexer = doSharedSetup(project)
   .settings(libraryDependencies ++= Dependencies.reindexerDependencies)
 
+lazy val sierra_to_dynamo = doSharedSetup(project)
+  .settings(libraryDependencies ++= Dependencies.sierraToDynamoDepedencies)
+
 lazy val root = (project in file("."))
   .aggregate(common,
              api,
              ingestor,
              transformer,
              id_minter,
-             reindexer)
+             reindexer, sierra_to_dynamo)

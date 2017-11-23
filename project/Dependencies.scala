@@ -73,7 +73,7 @@ object Dependencies {
     "org.scalatest" %% "scalatest" % versions.scalatest % "test",
     "com.fasterxml.jackson.dataformat" % "jackson-dataformat-yaml" % versions.jacksonYamlVersion % " test",
     "com.novocode" % "junit-interface" % versions.junitInterface % "test"
-  ) ++ esDependencies ++ awsDependencies ++ akkaDependencies ++ dynamoDependencies
+  ) ++ esDependencies ++ awsDependencies ++ akkaDependencies ++ dynamoDependencies ++ circeDependencies
 
   val apiDependencies: Seq[ModuleID] = commonDependencies ++ Seq(
     "com.github.xiaodongw" %% "swagger-finatra" % "0.7.2"
@@ -91,4 +91,8 @@ object Dependencies {
     : Seq[ModuleID] = commonDependencies ++ mysqlDependencies ++ circeDependencies
 
   val reindexerDependencies: Seq[ModuleID] = commonDependencies
+
+  val sierraToDynamoDepedencies: Seq[ModuleID] = Seq(
+    "uk.ac.wellcome" %% "sierra_streams_source" % "0.1"
+  )
 }
