@@ -8,7 +8,7 @@ INFRA_BUCKET = platform-infra
 #
 define terraform_plan
 	make uptodate-git
-	$(ROOT)/builds/docker_run.py --aws -- \
+	$(ROOT)/builds/docker_run.py --aws --dind -- \
 		--volume $(1):/data \
 		--env OP=plan \
 		--env GET_PLATFORM_TFVARS=true \
@@ -23,7 +23,7 @@ endef
 #
 define terraform_apply
 	make uptodate-git
-	$(ROOT)/builds/docker_run.py --aws -- \
+	$(ROOT)/builds/docker_run.py --aws --dind -- \
 		--volume $(1):/data \
 		--env OP=apply \
 		wellcome/terraform_wrapper:latest
