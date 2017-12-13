@@ -87,6 +87,18 @@ define build_image
 endef
 
 
+# Push an image to Docker Hub.
+#
+# Args:
+#   $1 - Name of the Docker image.
+#
+define push_to_docker_hub
+	docker tag $(1) wellcome/$(1)
+	docker login --username "$$DOCKER_USERNAME" --password "$$DOCKER_PASSWORD"
+	docker push wellcome/$(1)
+endef
+
+
 # Publish a Docker image to ECR, and put its associated release ID in S3.
 #
 # Args:

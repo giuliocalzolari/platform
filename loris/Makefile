@@ -27,7 +27,7 @@ loris-run: loris-build
 		loris
 
 loris-publish: loris-build
-	$(call publish_service,loris)
+	$(call push_to_docker_hub,loris)
 
 loris-terraform-plan:
 	$(call terraform_plan,$(LORIS)/terraform)
