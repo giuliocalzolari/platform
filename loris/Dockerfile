@@ -4,8 +4,8 @@ RUN apt-get update && \
     apt-get install --yes python uwsgi uwsgi-plugin-python && \
     apt-get clean
 
-ENV LORIS_COMMIT 06ece401d1bd04c9042db22548ea0a13b0423a67
-ENV LORIS_GITHUB_USER wellcometrust
+ENV LORIS_COMMIT 2776a60bb7ed42126e434ffda16ed0ae3fcc1196
+ENV LORIS_GITHUB_USER loris-imageserver
 
 COPY requirements.txt /
 COPY install_loris.sh /install_loris.sh
