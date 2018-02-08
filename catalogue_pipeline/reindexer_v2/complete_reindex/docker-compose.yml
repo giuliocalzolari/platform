@@ -1,3 +1,0 @@
-services:
-  dynamodb:
-    image: peopleperhour/dynamodb
