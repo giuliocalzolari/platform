@@ -82,13 +82,14 @@ def _dynamodb_is_responsive(url):
 
 
 @pytest.fixture(scope='session')
-def dynamodb_client(docker_services, docker_ip):
-    url = f'http://{docker_ip}:{docker_services.port_for("dynamodb", 8000)}'
+def dynamodb_resource(docker_services, docker_ip):
+    endpoint_url = (
+        f'http://{docker_ip}:{docker_services.port_for("dynamodb", 8000)}'
+    )
 
     docker_services.wait_until_responsive(
        timeout=5.0, pause=0.1,
        check=lambda: _dynamodb_is_responsive(url)
     )
 
-    client = boto3.client('dynamodb')
-    yield client
+    yield boto3.resource('dynamodb', endpoint_url=endpoint_url)
