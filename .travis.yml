@@ -66,43 +66,45 @@ jobs:
     # Sierra adapter stack.  This covers multiple Scala apps, so we skip
     # it into separate tasks to avoid running all of them any time there's
     # a change to just one.
-    - stage: test
-      env: TASK=sierra_common-test
-    - env: TASK=sierra_window_generator-test
-    - env: TASK=sierra_reader-test
-    - env: TASK=sierra_items_to_dynamo-test
-    - env: TASK=sierra_bib_merger-test
-    - env: TASK=sierra_item_merger-test
-    - env: TASK=s3_demultiplexer-test
+    # - stage: test
+    #   env: TASK=sierra_common-test
+    # - env: TASK=sierra_window_generator-test
+    # - env: TASK=sierra_reader-test
+    # - env: TASK=sierra_items_to_dynamo-test
+    # - env: TASK=sierra_bib_merger-test
+    # - env: TASK=sierra_item_merger-test
+    # - env: TASK=s3_demultiplexer-test
 
     # Catalogue pipeline stack
-    - env: TASK=sbt-common-test
-    - env: TASK=transformer-test
-    - env: TASK=ingestor-test
-    - env: TASK=id_minter-test
+    # - env: TASK=sbt-common-test
+    # - env: TASK=transformer-test
+    # - env: TASK=ingestor-test
+    # - env: TASK=id_minter-test
 
     # Reindexer stack
-    - env: TASK=reindexer_v2/reindex_job_creator-test
-    - env: TASK=reindexer_v2/complete_reindex-test
+    # - env: TASK=reindexer_v2/reindex_job_creator-test
+    # - env: TASK=reindexer_v2/complete_reindex-test
+    - stage: test
+      env: TASK=reindexer_v2/reindex_shard_generator-test
 
     # Catalogue API stack
-    - env: TASK=api-test
+    # - env: TASK=api-test
     # (not under active development)
     # - env: TASK=api_docs-build
 
     # Miro preprocessor stack  (not under active development)
     # - env: TASK=miro_preprocessor-test
 
-    # Shared infra stack
-    - env: TASK=shared_infra-test
-
-    # Loris stack
-    - env: TASK=loris-build
-    # (not under active development)
-    # - env: TASK=cache_cleaner-build
-
-    # Monitoring stack
-    - env: TASK=monitoring-test
+    # # Shared infra stack
+    # - env: TASK=shared_infra-test
+    #
+    # # Loris stack
+    # - env: TASK=loris-build
+    # # (not under active development)
+    # # - env: TASK=cache_cleaner-build
+    #
+    # # Monitoring stack
+    # - env: TASK=monitoring-test
 
 stages:
   - format
